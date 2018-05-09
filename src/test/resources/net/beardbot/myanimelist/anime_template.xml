@@ -1,0 +1,14 @@
+<entry>
+    <id>{id}</id>
+    <title>{title}</title>
+    <english>{english}</english>
+    <synonyms>{synonyms}</synonyms>
+    <episodes>{episodes}</episodes>
+    <score>{score}</score>
+    <type>{type}</type>
+    <status>{status}</status>
+    <start_date>{start_date}</start_date>
+    <end_date>{end_date}</end_date>
+    <synopsis>{synopsis}</synopsis>
+    <image>{image}</image>
+</entry>

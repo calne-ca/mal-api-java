@@ -1,0 +1,10 @@
+<myinfo>
+    <user_id>{user_id}</user_id>
+    <user_name>{user_name}</user_name>
+    <user_reading>{user_reading}</user_reading>
+    <user_completed>{user_completed}</user_completed>
+    <user_onhold>{user_onhold}</user_onhold>
+    <user_dropped>{user_dropped}</user_dropped>
+    <user_plantoread>{user_plantoread}</user_plantoread>
+    <user_days_spent_watching>{user_days_spent_watching}</user_days_spent_watching>
+</myinfo>

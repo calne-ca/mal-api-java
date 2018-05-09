@@ -1,0 +1,21 @@
+<anime>
+    <series_animedb_id>{series_animedb_id}</series_animedb_id>
+    <series_title>{series_title}</series_title>
+    <series_synonyms>{series_synonyms}</series_synonyms>
+    <series_type>{series_type}</series_type>
+    <series_episodes>{series_episodes}</series_episodes>
+    <series_status>{series_status}</series_status>
+    <series_start>{series_start}</series_start>
+    <series_end>{series_end}</series_end>
+    <series_image>{series_image}</series_image>
+    <my_id>{my_id}</my_id>
+    <my_watched_episodes>{my_watched_episodes}</my_watched_episodes>
+    <my_start_date>{my_start_date}</my_start_date>
+    <my_finish_date>{my_finish_date}</my_finish_date>
+    <my_score>{my_score}</my_score>
+    <my_status>{my_status}</my_status>
+    <my_rewatching>{my_rewatching}</my_rewatching>
+    <my_rewatching_ep>{my_rewatching_ep}</my_rewatching_ep>
+    <my_last_updated>{my_last_updated}</my_last_updated>
+    <my_tags>{my_tags}</my_tags>
+</anime>

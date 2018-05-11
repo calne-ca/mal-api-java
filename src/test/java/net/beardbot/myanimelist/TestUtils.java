@@ -118,7 +118,7 @@ public class TestUtils {
 
     @Getter
     public static class AnimeListXmlBuilder {
-        private String myInfo;
+        private String myInfo = "";
         private List<String> entries = new ArrayList<>();
 
         private AnimeListXmlBuilder(){}
@@ -253,7 +253,7 @@ public class TestUtils {
                     .withSeriesStatus("2")
                     .withSeriesStart("2004-04-07")
                     .withSeriesEnd("2005-09-28")
-                    .withSeriesImage(String.format("https://myanimelist.cdn-dena.com/images/anime/%s/%s.jpg",RandomStringUtils.randomNumeric(1),RandomStringUtils.randomNumeric(5)))
+                    .withSeriesImage(generateImageUrl())
                     .withMyId(RandomStringUtils.randomNumeric(3))
                     .withMyWatchedEpisodes(RandomStringUtils.randomNumeric(3))
                     .withMyStartDate("2013-07-26")
@@ -456,7 +456,7 @@ public class TestUtils {
             withStartDate("2006-01-07");
             withEndDate("2006-06-17");
             withSynopsis(RandomStringUtils.randomAlphabetic(1024));
-            withImage(String.format("https://myanimelist.cdn-dena.com/images/anime/%s/%s.jpg",RandomStringUtils.randomNumeric(1),RandomStringUtils.randomNumeric(5)));
+            withImage(generateImageUrl());
             return this;
         }
         public String build() throws IOException {
@@ -479,7 +479,7 @@ public class TestUtils {
 
     @Getter
     public static class MangaListXmlBuilder {
-        private String myInfo;
+        private String myInfo = "";
         private List<String> entries = new ArrayList<>();
 
         private MangaListXmlBuilder(){}
@@ -625,7 +625,7 @@ public class TestUtils {
                     .withSeriesStatus("2")
                     .withSeriesStart("2004-04-07")
                     .withSeriesEnd("2005-09-28")
-                    .withSeriesImage(String.format("https://myanimelist.cdn-dena.com/images/anime/%s/%s.jpg",RandomStringUtils.randomNumeric(1),RandomStringUtils.randomNumeric(5)))
+                    .withSeriesImage(generateImageUrl())
                     .withMyId(RandomStringUtils.randomNumeric(3))
                     .withMyReadChapters(RandomStringUtils.randomNumeric(3))
                     .withMyReadVolumes(RandomStringUtils.randomNumeric(2))
@@ -912,12 +912,45 @@ public class TestUtils {
         entry.setSeriesEpisodes(12);
         entry.setSeriesStatus(AnimeListSeriesStatus.CURRENTLY_AIRING);
         entry.setSeriesSynonyms(Arrays.asList(RandomStringUtils.randomAlphanumeric(16),RandomStringUtils.randomAlphanumeric(16)));
-        entry.setSeriesImageUrl(String.format("https://myanimelist.cdn-dena.com/images/anime/%s/%s.jpg",RandomStringUtils.randomNumeric(1),RandomStringUtils.randomNumeric(5)));
+        entry.setSeriesImageUrl(generateImageUrl());
         entry.setSeriesType(AnimeListSeriesType.TV);
         entry.setSeriesStart(dateFromString("2018-01-01"));
         entry.setSeriesEnd(dateFromString("2018-07-04"));
         
         return entry;
+    }
+
+    public static Anime createTestAnime(){
+        Anime anime = new Anime();
+        anime.setId(RandomStringUtils.randomAlphanumeric(16));
+        anime.setTitle(RandomStringUtils.randomAlphabetic(12));
+        anime.setStartDate(dateFromString("2017-03-04"));
+        anime.setEndDate(dateFromString("2017-08-15"));
+        anime.setEnglishTitle(RandomStringUtils.randomAlphabetic(20));
+        anime.setEpisodes(24);
+        anime.setImageUrl(generateImageUrl());
+        anime.setScore(5.4f);
+        anime.setSynonyms(Collections.emptyList());
+        anime.setStatus(AnimeStatus.FINISHED_AIRING);
+        anime.setSynopsis(RandomStringUtils.randomAlphabetic(128));
+        return anime;
+    }
+
+    public static Manga createTestManga(){
+        Manga anime = new Manga();
+        anime.setId(RandomStringUtils.randomAlphanumeric(16));
+        anime.setTitle(RandomStringUtils.randomAlphabetic(12));
+        anime.setStartDate(dateFromString("2016-03-04"));
+        anime.setEndDate(dateFromString("2016-08-15"));
+        anime.setEnglishTitle(RandomStringUtils.randomAlphabetic(20));
+        anime.setChapters(24);
+        anime.setVolumes(3);
+        anime.setImageUrl(generateImageUrl());
+        anime.setScore(5.4f);
+        anime.setSynonyms(Collections.emptyList());
+        anime.setStatus(MangaStatus.FINISHED);
+        anime.setSynopsis(RandomStringUtils.randomAlphabetic(128));
+        return anime;
     }
 
     public static MangaListEntryValues createTestMangaListEntryValues(){
@@ -955,7 +988,7 @@ public class TestUtils {
         entry.setSeriesVolumes(8);
         entry.setSeriesStatus(MangaListSeriesStatus.PUBLISHING);
         entry.setSeriesSynonyms(Arrays.asList(RandomStringUtils.randomAlphanumeric(16),RandomStringUtils.randomAlphanumeric(16)));
-        entry.setSeriesImageUrl(String.format("https://myanimelist.cdn-dena.com/images/anime/%s/%s.jpg",RandomStringUtils.randomNumeric(1),RandomStringUtils.randomNumeric(5)));
+        entry.setSeriesImageUrl(generateImageUrl());
         entry.setSeriesType(MangaListSeriesType.MANGA);
         entry.setSeriesStart(dateFromString("2017-01-01"));
         entry.setSeriesEnd(dateFromString("2017-07-04"));
@@ -1007,5 +1040,10 @@ public class TestUtils {
 
     public static String unifyXml(String xml){
         return xml.replace(" ","").replace("\n","").replace("\t","").replace("\r","");
+    }
+
+    private static String generateImageUrl() {
+        return String.format("https://myanimelist.cdn-dena.com/images/anime/%s/%s.jpg",
+                             RandomStringUtils.randomNumeric(1), RandomStringUtils.randomNumeric(5));
     }
 }

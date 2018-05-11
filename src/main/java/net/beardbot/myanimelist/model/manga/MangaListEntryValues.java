@@ -21,6 +21,7 @@ import net.beardbot.myanimelist.model.adapter.BooleanAdapter;
 import net.beardbot.myanimelist.model.adapter.CommaSeperatedListAdapter;
 import net.beardbot.myanimelist.model.adapter.OutputDateAdapter;
 
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -84,7 +85,14 @@ public class MangaListEntryValues {
     @XmlElement(name = "retail_volumes")
     private Integer retailVolumes;
 
-    public static MangaListEntryValues fromEntry(MangaListEntry entry){
+    /**
+     * Creates {@link MangaListEntryValues} based on a {@link MangaListEntry} object.
+     *
+     * @param entry {@code [required]} A {@link MangaListEntry} object containing information about the entry.
+     * @return A {@link MangaListEntryValues} containing all shared information provided with the given {@code entry}.
+     * @throws NullPointerException If the entry is not provided.
+     */
+    public static MangaListEntryValues fromEntry(@NotNull MangaListEntry entry){
         MangaListEntryValues values = new MangaListEntryValues();
 
         values.setChapter(entry.getReadChapters());

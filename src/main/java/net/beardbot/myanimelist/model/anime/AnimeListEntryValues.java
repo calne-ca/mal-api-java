@@ -16,18 +16,19 @@
  */
 package net.beardbot.myanimelist.model.anime;
 
-import lombok.Data;
-import net.beardbot.myanimelist.model.adapter.BooleanAdapter;
-import net.beardbot.myanimelist.model.adapter.CommaSeperatedListAdapter;
-import net.beardbot.myanimelist.model.adapter.OutputDateAdapter;
+import java.util.Date;
+import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import java.util.Date;
-import java.util.List;
+
+import lombok.Data;
+import net.beardbot.myanimelist.model.adapter.BooleanAdapter;
+import net.beardbot.myanimelist.model.adapter.CommaSeperatedListAdapter;
+import net.beardbot.myanimelist.model.adapter.OutputDateAdapter;
 
 @Data
 @XmlRootElement(name = "entry")
@@ -84,6 +85,13 @@ public class AnimeListEntryValues {
     @XmlJavaTypeAdapter(CommaSeperatedListAdapter.class)
     private List<String> tags;
 
+    /**
+     * Creates {@link AnimeListEntryValues} based on a {@link AnimeListEntry} object.
+     *
+     * @param entry {@code [required]} A {@link AnimeListEntry} object containing information about the entry.
+     * @return A {@link AnimeListEntryValues} containing all shared information provided with the given {@code entry}.
+     * @throws NullPointerException If the entry is not provided.
+     */
     public static AnimeListEntryValues fromEntry(AnimeListEntry entry){
         AnimeListEntryValues values = new AnimeListEntryValues();
 

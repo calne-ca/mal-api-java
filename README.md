@@ -90,4 +90,8 @@ client.removeFromMangaList(entry);
 ```
 
 ### Maven Dependency
-After first release...
+<dependency>
+    <groupId>net.beardbot</groupId>
+    <artifactId>mal-api</artifactId>
+    <version>1.0.0</version>
+</dependency>

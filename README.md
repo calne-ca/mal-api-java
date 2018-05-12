@@ -90,8 +90,10 @@ client.removeFromMangaList(entry);
 ```
 
 ### Maven Dependency
+```xml
 <dependency>
     <groupId>net.beardbot</groupId>
     <artifactId>mal-api</artifactId>
     <version>1.0.0</version>
 </dependency>
+```

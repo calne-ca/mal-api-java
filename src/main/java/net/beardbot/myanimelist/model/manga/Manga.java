@@ -19,6 +19,7 @@ package net.beardbot.myanimelist.model.manga;
 import lombok.Data;
 import net.beardbot.myanimelist.model.adapter.InputDateAdapter;
 import net.beardbot.myanimelist.model.adapter.SemicolonSeperatedListAdapter;
+import net.beardbot.myanimelist.model.adapter.MarkdownAndHtmlRemovalAdapter;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -69,6 +70,7 @@ public class Manga {
     private Date endDate;
 
     @XmlElement(name = "synopsis")
+    @XmlJavaTypeAdapter(MarkdownAndHtmlRemovalAdapter.class)
     private String synopsis;
 
     @XmlElement(name = "image")

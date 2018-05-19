@@ -48,7 +48,9 @@ import static net.beardbot.myanimelist.utils.XmlUtils.*;
  */
 public class MALClient implements AutoCloseable {
 
-    private final Client client;
+    private Client client;
+
+    private final ClientConfig clientConfig;
     private final String malUrl;
     private final String username;
 
@@ -75,13 +77,9 @@ public class MALClient implements AutoCloseable {
             @NonNull final String malUrl) {
 
         this.username = username;
-        this.client = ClientBuilder.newClient(
-                new ClientConfig()
-                        .connectorProvider(new ApacheConnectorProvider())
-                        .register(HttpAuthenticationFeature.basicBuilder()
-                                .credentials(username, password)
-                                .build()));
         this.malUrl = malUrl;
+        this.clientConfig = createClientConfig(username,password);
+        this.client = ClientBuilder.newClient(clientConfig);
     }
 
     /**
@@ -642,6 +640,11 @@ public class MALClient implements AutoCloseable {
         int status = response.getStatus();
         String message = response.readEntity(String.class);
 
+        if (status == Response.Status.NO_CONTENT.getStatusCode()){
+            // This is necessary because Jersey cannot handle MAL's 204 response correctly for whatever reason.
+            this.client.close();
+            this.client = ClientBuilder.newClient(this.clientConfig);
+        }
         if (status == Response.Status.UNAUTHORIZED.getStatusCode()){
             throw new NotAuthorizedException(message);
         }
@@ -651,6 +654,13 @@ public class MALClient implements AutoCloseable {
         if (status >= Response.Status.BAD_REQUEST.getStatusCode()){
             throw new ClientErrorException(message, status);
         }
+    }
+
+    private ClientConfig createClientConfig(String username, String password){
+        ClientConfig clientConfig = new ClientConfig();
+        clientConfig.connectorProvider(new ApacheConnectorProvider());
+        clientConfig.register(HttpAuthenticationFeature.basicBuilder().credentials(username,password).build());
+        return clientConfig;
     }
 
     @Override

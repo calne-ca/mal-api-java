@@ -94,6 +94,6 @@ client.removeFromMangaList(entry);
 <dependency>
     <groupId>net.beardbot</groupId>
     <artifactId>mal-api</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```

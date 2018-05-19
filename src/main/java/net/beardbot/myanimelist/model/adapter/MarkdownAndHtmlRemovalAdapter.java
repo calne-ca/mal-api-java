@@ -14,26 +14,24 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package net.beardbot.myanimelist.model.manga;
+package net.beardbot.myanimelist.model.adapter;
 
-import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.XmlEnumValue;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlAdapter;
 
-@XmlType
-@XmlEnum
-public enum MangaListSeriesStatus {
-    @XmlEnumValue("1") PUBLISHING("1"),
-    @XmlEnumValue("2") FINISHED("2"),
-    @XmlEnumValue("3") NOT_YET_PUBLISHED("3");
-
-    private String value;
-
-    MangaListSeriesStatus(String value) {
-        this.value = value;
+public class MarkdownAndHtmlRemovalAdapter extends XmlAdapter<String, String> {
+    @Override
+    public String unmarshal(String v) throws Exception {
+        return format(v);
     }
 
-    public String getValue() {
-        return value;
+    @Override
+    public String marshal(String v) throws Exception {
+        return v;
+    }
+
+    private static String format(String v){
+        return v
+                .replaceAll("<.*?>","")
+                .replaceAll("\\[.*?]","");
     }
 }

@@ -21,7 +21,10 @@ import javax.xml.bind.annotation.XmlEnumValue;
 public enum MangaListSeriesType {
     @XmlEnumValue("1") MANGA("1"),
     @XmlEnumValue("2") NOVEL("2"),
-    @XmlEnumValue("3") MANHWA("3");
+    @XmlEnumValue("3") ONE_SHOT("3"),
+    @XmlEnumValue("4") DOUJINSHI("4"),
+    @XmlEnumValue("5") MANHWA("5"),
+    @XmlEnumValue("6") MANHUA("6");
 
     private String value;
 

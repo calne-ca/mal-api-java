@@ -23,7 +23,8 @@ public enum AnimeListSeriesType {
     @XmlEnumValue("2") OVA("2"),
     @XmlEnumValue("3") MOVIE("3"),
     @XmlEnumValue("4") SPECIAL("4"),
-    @XmlEnumValue("5") ONA("5");
+    @XmlEnumValue("5") ONA("5"),
+    @XmlEnumValue("6") MUSIC("6");
 
     private String value;
 

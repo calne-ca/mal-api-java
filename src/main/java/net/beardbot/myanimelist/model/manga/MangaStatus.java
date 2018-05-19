@@ -24,7 +24,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlEnum
 public enum MangaStatus {
     @XmlEnumValue("Publishing") PUBLISHING("Publishing"),
-    @XmlEnumValue("Finished") FINISHED("Finished");
+    @XmlEnumValue("Finished") FINISHED("Finished"),
+    @XmlEnumValue("Not yet published") NOT_YET_PUBLISHED("Not yet published");
 
     private String value;
 

@@ -1,4 +1,4 @@
-## Java Client for MyAnimeList API
+## Java Client for MyAnimeList API (DEPRECATED)
 
 ### WARNING:
 MyAnimeList has disabled their API as of May 2018, therefore this Java implementation doesn't work at the moment!
